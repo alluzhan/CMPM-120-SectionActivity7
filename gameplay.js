@@ -1,31 +1,48 @@
-class Title extends Phaser.Scene {
+class TransitionScene extends Phaser.Scene {
+    constructor(key) {
+        super(key);
+    }
+
+    init() {
+        console.log("replace with actual text");
+        this.textToShow = "placeholder"
+        this.nextSceneKey = "Title";
+    }
+
+    preload() {
+
+    }
+
+    create() {
+        this.textX = (this.game.config.width/100);
+        this.textY = (this.game.config.height/100);
+        this.add.text(this.textX * 2, this.textY * 90, this.textToShow).setScale(6);
+        this.add.text(this.textX * 62, this.textY * 5, "Tap Screen To Continue").setScale(3);
+        this.input.on('pointerdown', () => {
+            this.scene.start(this.nextSceneKey);
+        })
+    }
+}
+
+class Title extends TransitionScene {
     constructor() {
         super("title");
     }
 
-    create() {
-        this.add.text(960, 540, 'Title Screen' )
-            .setOrigin(0.5).setFontSize(100);
-
-        this.input.on('pointerdown', () => {
-            this.scene.start("message1");
-        });
+    init() {
+        this.textToShow = "Title Screen";
+        this.nextSceneKey = "message1";
     }
 }
 
-class Message1 extends Phaser.Scene {
+class Message1 extends TransitionScene {
     constructor() {
         super("message1");
     }
 
-    create() {
-        this.cameras.main.fadeIn(2000);
-        this.add.text(960, 540, "Watch out for slugs!")
-            .setOrigin(0.5).setFontSize(100);
-
-        this.input.on('pointerdown', () => {
-            this.scene.start("gameplay1");
-        });
+    init() {
+        this.textToShow = "Watch out for slugs!";
+        this.nextSceneKey = "gameplay1";
     }
 }
 
@@ -51,35 +68,25 @@ class Gameplay1 extends Phaser.Scene {
     }
 }
 
-class Message2 extends Phaser.Scene {
+class Message2 extends TransitionScene {
     constructor() {
         super("message2");
     }
 
-    create() {
-        this.cameras.main.fadeIn(2000);
-        this.add.text(960, 540, "That's good work!")
-            .setOrigin(0.5).setFontSize(100);
-
-        this.input.on('pointerdown', () => {
-            this.scene.start("message3");
-        });
+    init() {
+        this.textToShow = "That's good work!";
+        this.nextSceneKey = "message3";
     }
 }
 
-class Message3 extends Phaser.Scene {
+class Message3 extends TransitionScene {
     constructor() {
         super("message3");
     }
 
-    create() {
-        this.cameras.main.fadeIn(2000);
-        this.add.text(960, 540, "Watch out for snails!")
-            .setOrigin(0.5).setFontSize(100);
-
-        this.input.on('pointerdown', () => {
-            this.scene.start("gameplay2");
-        });
+    init() {
+        this.textToShow = "Watch out for Snails!";
+        this.nextSceneKey = "gameplay2";
     }
 }
 
@@ -105,35 +112,25 @@ class Gameplay2 extends Phaser.Scene {
     }
 }
 
-class Message4 extends Phaser.Scene {
+class Message4 extends TransitionScene {
     constructor() {
         super("message4");
     }
 
-    create() {
-        this.cameras.main.fadeIn(2000);
-        this.add.text(960, 540, "Good job!")
-            .setOrigin(0.5).setFontSize(100);
-
-        this.input.on('pointerdown', () => {
-            this.scene.start("message5");
-        });
+    init() {
+        this.textToShow = "Good job!";
+        this.nextSceneKey = "message5";
     }
 }
 
-class Message5 extends Phaser.Scene {
+class Message5 extends TransitionScene {
     constructor() {
         super("message5");
     }
 
-    create() {
-        this.cameras.main.fadeIn(2000);
-        this.add.text(960, 540, "This is the last level!")
-            .setOrigin(0.5).setFontSize(100);
-
-        this.input.on('pointerdown', () => {
-            this.scene.start("gameplay3");
-        });
+    init() {
+        this.textToShow = "This is the last level!";
+        this.nextSceneKey = "gameplay3";
     }
 }
 
@@ -159,35 +156,25 @@ class Gameplay3 extends Phaser.Scene {
     }
 }
 
-class Message6 extends Phaser.Scene {
+class Message6 extends TransitionScene {
     constructor() {
         super("message6");
     }
 
-    create() {
-        this.cameras.main.fadeIn(2000);
-        this.add.text(960, 540, "The roly poly gets a badge!")
-            .setOrigin(0.5).setFontSize(100);
-
-        this.input.on('pointerdown', () => {
-            this.scene.start("victory");
-        });
+    init() {
+        this.textToShow = "The roly poly gets a badge!";
+        this.nextSceneKey = "victory";
     }
 }
 
-class Victory extends Phaser.Scene {
+class Victory extends TransitionScene {
     constructor() {
         super("victory");
     }
 
-    create() {
-        this.cameras.main.fadeIn(2000);
-        this.add.text(960, 540, 'Victory Screen' )
-            .setOrigin(0.5).setFontSize(100);
-
-        this.input.on('pointerdown', () => {
-            this.scene.start("title");
-        });
+    init() {
+        this.textToShow = "Victory Screen";
+        this.nextSceneKey = "title";
     }
 }
 
